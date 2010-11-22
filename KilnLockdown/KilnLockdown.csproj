@@ -55,7 +55,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPluginPersonJoin_Display_Commit_Example_1.cs" />
-    <Compile Include="KilnLocker.cs" />
+    <Compile Include="Locker\KilnLocker_PersonJoin.cs" />
+    <Compile Include="Locker\KilnLocker_Database.cs" />
+    <Compile Include="Locker\KilnLocker_PersonDisplay.cs" />
+    <Compile Include="Locker\KilnLocker_Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,12 +10,10 @@ using FogCreek.FogBugz.UI;
 using FogCreek.FogBugz.UI.Dialog;
 using FogCreek.FogBugz.Plugins.Entity;
 
-namespace KilnLockdown
+namespace KilnLockdown.Locker
 {
-    public class KilnLocker : Plugin, IPluginPersonDisplay
+    public partial class KilnLocker : IPluginPersonDisplay
     {
-        public KilnLocker(CPluginApi api) : base(api) { }
-
         public CDialogItem[] PersonDisplayEdit(CPerson person)
         {
             CDialogItem[] retVal = null;
@@ -41,12 +39,12 @@ namespace KilnLockdown
 
         public string[] PersonDisplayListFields(CPerson person)
         {
-            return new string[] { "PersonDisplayListFields 1 " + person.sFullName };
+            return new string[] { "Yes" };
         }
 
         public string[] PersonDisplayListHeaders()
         {
-            return new string[] { "PersonDisplayListHeaders 2" };
+            return new string[] { "Can Access Kiln" };
         }
     }
 }

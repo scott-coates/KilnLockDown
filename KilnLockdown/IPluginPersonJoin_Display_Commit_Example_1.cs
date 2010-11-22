@@ -23,7 +23,7 @@ namespace IPluginPersonJoin_Display_Commit_Example_1
 {
     /* Class Declaration: Inherit from Plugin, expose IPluginPersonJoin, IPluginPersonDisplay,
      * IPluginPersonCommit */
-    public class IPluginPersonJoin_Display_Commit_Example_1 : Plugin, IPluginPersonJoin,
+    public abstract class IPluginPersonJoin_Display_Commit_Example_1 : Plugin, IPluginPersonJoin,
         IPluginPersonDisplay, IPluginPersonCommit, IPluginDatabase
     {
         /* The plugin Id is a required argument for CPerson.SetPluginField and 
