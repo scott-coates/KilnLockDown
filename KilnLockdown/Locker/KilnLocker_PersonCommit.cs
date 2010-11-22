@@ -22,7 +22,7 @@ namespace KilnLockdown.Locker
         public bool PersonCommitBefore(CPerson person)
         {
             api.Notifications.AddMessage(api.Request[api.AddPluginPrefix("sAllowKiln")]);
-            return false;
+            return true;
         }
 
         public void PersonCommitRollback(CPerson person)
