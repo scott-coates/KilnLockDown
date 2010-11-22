@@ -9,6 +9,7 @@ using FogCreek.FogBugz.Plugins.Interfaces;
 using FogCreek.FogBugz.UI;
 using FogCreek.FogBugz.UI.Dialog;
 using FogCreek.FogBugz.Plugins.Entity;
+using System.Collections;
 
 namespace KilnLockdown.Locker
 {
@@ -16,15 +17,30 @@ namespace KilnLockdown.Locker
     {
         public CDialogItem[] PersonDisplayEdit(CPerson person)
         {
-            CDialogItem[] retVal = null;
+            var allowKiln = new CDialogItem();
+            var retVal = new CDialogItem[] { allowKiln };
+            allowKiln.sLabel = "Kiln Access";
+            allowKiln.sInstructions = "Is this user allowed to use kiln?";
 
-            //if (IsEligible(person))
+            if (IsEligible(person))
             {
-                var allowKiln = new CDialogItem();
-                allowKiln.sLabel = "Is this user allowed to use kiln?";
-                var values = new string[] { "Yes", "No" };
-                allowKiln.sContent = Forms.RadioInputGroup(api.PluginPrefix + "sAllowKiln", values, "", values);
-                retVal = new CDialogItem[] { allowKiln };
+                allowKiln.sContent =
+                    Forms.RadioInput("sAllowKiln", "Yes", false, "Yes", "sAllowKilnYes")
+                     +
+                     Forms.RadioInput("sAllowKiln", "No", false, "Now", "sAllowKilnNo")
+                     ;
+            }
+            else
+            {
+                //set default setting to yes if admin and no if normal user
+                var setDefault = person.IsSiteAdmin();
+                var enabledAttrs = new Dictionary<string, string> { { "disabled", "true" } };
+
+                allowKiln.sContent =
+                    Forms.RadioInput("sAllowKiln", "Yes", setDefault, "Yes", "sAllowKilnYes", enabledAttrs)
+                     +
+                     Forms.RadioInput("sAllowKiln", "No", !setDefault, "No", "sAllowKilnNo", enabledAttrs)
+                     ;
             }
 
             return retVal;

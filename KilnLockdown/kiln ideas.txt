@@ -1,0 +1,12 @@
+ideas
+
+prevent user from seeing kiln
+prevent user from navigating to kiln
+
+*optional* prevent user from being assigned to a case
+
+allow user to get to a case if they're already assigned but disallowed
+
+prevent users from being given permissions if they're disallowed
+
+disable every new user to not see kiln

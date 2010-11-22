@@ -15,6 +15,8 @@ namespace KilnLockdown.Locker
     public partial class KilnLocker : Plugin
     {
         private string _kilnAccessTable = "KilnLock";
+        protected const string _pluginId =
+            "IKilnAccess@scoarescoare.com";
 
         public KilnLocker(CPluginApi api) : base(api) { }
     }
