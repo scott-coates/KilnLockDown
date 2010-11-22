@@ -17,16 +17,14 @@ namespace KilnLockdown.Locker
         public CDialogItem[] PersonDisplayEdit(CPerson person)
         {
             CDialogItem[] retVal = null;
-            var editDisplayHTML = new StringBuilder();
 
             //if (IsEligible(person))
             {
-                editDisplayHTML.Append("<input type='radio' name='useKiln' id='useKilnTrue' value='true' />");
-                editDisplayHTML.Append("<label for='useKilnTrue'>Yes</label>");
-                editDisplayHTML.Append("<input type='radio' name='useKiln' id='useKilnFalse' value='false' />");
-                editDisplayHTML.Append("<label for='useKilnFalse'>No</label>");
-
-                retVal = new CDialogItem[] { new CDialogItem(editDisplayHTML.ToString(), "Allow Kilin", "Is this user allowed to use kiln?") };
+                var allowKiln = new CDialogItem();
+                allowKiln.sLabel = "Is this user allowed to use kiln?";
+                var values = new string[] { "Yes", "No" };
+                allowKiln.sContent = Forms.RadioInputGroup(api.PluginPrefix + "sAllowKiln", values, "", values);
+                retVal = new CDialogItem[] { allowKiln };
             }
 
             return retVal;
