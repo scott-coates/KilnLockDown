@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>FogCreek.Plugins</name>
+  </assembly>
+  <members>
+    <member name="T:FogCreek.Plugins.AssemblyFogCreekEmailAddressAttribute">
+      <summary>The email address to contact the plugin developer, e.g. YourEmail@example.com </summary>
+    </member>
+    <member name="M:FogCreek.Plugins.AssemblyFogCreekEmailAddressAttribute.#ctor(System.String)">
+      <summary>Constructor</summary>
+      <param name="email">The plugin's contact email address</param>
+    </member>
+    <member name="P:FogCreek.Plugins.AssemblyFogCreekEmailAddressAttribute.EmailAddress">
+      <summary>Get the plugin's contact email address</summary>
+    </member>
+    <member name="T:FogCreek.Plugins.AssemblyFogCreekMajorVersionAttribute">
+      <summary>The major version of the FogBugz plugin API required for this plugin, e.g. 3 </summary>
+    </member>
+    <member name="M:FogCreek.Plugins.AssemblyFogCreekMajorVersionAttribute.#ctor(System.Int32)">
+      <summary>Constructor</summary>
+      <param name="majorversion">The major version of the FogBugz plugin API required</param>
+    </member>
+    <member name="P:FogCreek.Plugins.AssemblyFogCreekMajorVersionAttribute.MajorVersion">
+      <summary>Get the required FogBugz plugin API major version for the plugin</summary>
+    </member>
+    <member name="T:FogCreek.Plugins.AssemblyFogCreekMinorVersionMinAttribute">
+      <summary>The minimum minor version of the FogBugz plugin API required for this plugin, e.g. 0 </summary>
+    </member>
+    <member name="M:FogCreek.Plugins.AssemblyFogCreekMinorVersionMinAttribute.#ctor(System.Int32)">
+      <summary>Constructor</summary>
+      <param name="minorversionmin">The minimum minor version of the FogBugz plugin API required</param>
+    </member>
+    <member name="P:FogCreek.Plugins.AssemblyFogCreekMinorVersionMinAttribute.MinorVersionMin">
+      <summary>Get the required minimum FogBugz plugin API minor version for the plugin</summary>
+    </member>
+    <member name="T:FogCreek.Plugins.AssemblyFogCreekPluginIdAttribute">
+      <summary>The ID of the plugin, e.g. PluginName@YourDomain.com</summary>
+    </member>
+    <member name="M:FogCreek.Plugins.AssemblyFogCreekPluginIdAttribute.#ctor(System.String)">
+      <summary>Constructor</summary>
+      <param name="pluginid">The ID of the plugin</param>
+    </member>
+    <member name="P:FogCreek.Plugins.AssemblyFogCreekPluginIdAttribute.PluginId">
+      <summary>Get the ID of the Plugin.</summary>
+    </member>
+    <member name="T:FogCreek.Plugins.AssemblyFogCreekWebsiteAttribute">
+      <summary>The home website of the plugin, e.g. http://example.com</summary>
+    </member>
+    <member name="M:FogCreek.Plugins.AssemblyFogCreekWebsiteAttribute.#ctor(System.String)">
+      <summary>Simple constructor.</summary>
+      <param name="website">The URL of the website.</param>
+    </member>
+    <member name="P:FogCreek.Plugins.AssemblyFogCreekWebsiteAttribute.Website">
+      <summary>Get the plugin website URL. </summary>
+    </member>
+    <member name="T:FogCreek.Plugins.PluginAssemblyProxy">
+      <summary>
+            This class allows us to hold a proxy to a reflection-only load assembly in another AppDomain so
+            that we can reflect on it to get its plugin attributes. CreateInstanceAndUnwrap this class
+            in the other appdomain.
+            </summary>
+    </member>
+    <member name="M:FogCreek.Plugins.PluginAssemblyProxy.#ctor(System.Byte[])">
+      <summary>
+            Construct the proxy from the bytes of the assembly. This ReflectionOnlyLoads the assembly
+            and holds a reference to it so that we can proxy calls to refect on it. 
+            </summary>
+      <param name="rgb">The bytes of the assembly to load in the other appdomain</param>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAssemblyProxy.FullName">
+      <summary>The FullName of the proxied assembly</summary>
+    </member>
+    <member name="M:FogCreek.Plugins.PluginAssemblyProxy.GetReferencedAssemblies">
+      <summary>
+            Calls GetReferencedAssemblies on proxied assembly and returns the result
+            </summary>
+      <returns>The array of AssemblyNames the proxied class references.</returns>
+    </member>
+    <member name="M:FogCreek.Plugins.PluginAssemblyProxy.PluginAttributes">
+      <summary>Gets the PluginAttributes of the proxied assembly.</summary>
+      <returns>The PluginAttributes of the proxied assembly.</returns>
+    </member>
+    <member name="T:FogCreek.Plugins.PluginAttributes">
+      <summary>
+            A class that loads all of the FogCreek Plugin custom attributes and a few others relevant 
+            to plugin identity.
+            </summary>
+    </member>
+    <member name="M:FogCreek.Plugins.PluginAttributes.#ctor(System.Reflection.Assembly)">
+      <summary>
+            Creates a PluginAttributes object from the attributes of the assembly.
+            Throws an ArgumentException if the assembly does not have a FogCreek.Plugins.AssemblyFogCreekPluginIdAttribute.
+            The attributes are read as follows:
+            AssemblyFogCreekPluginIdAttribute -&gt; sId
+            AssemblyTitleAttribute -&gt; sName
+            AssemblyCompanyAttribute -&gt; sAuthor
+            AssemblyDescriptionAttribute - &gt; sDescription
+            AssemblyFileVersionAttribute -&gt; sVersion
+            AssemblyFogCreekMajorVersionAttribute -&gt; iAPIMajorVersion
+            AssemblyFogCreekMinorVersionMinAttribute -&gt; iAPIMinorVersionMin
+            AssemblyFogCreekEmailAddressAttribute -&gt; sEmail
+            AssemblyFogCreekWebsiteAttribute -&gt; sWebsite
+            </summary>
+      <param name="assembly"></param>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.iAPIMajorVersion">
+      <summary>The plugin's AssemblyFogCreekMajorVersionAttribute value</summary>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.iAPIMinorVersionMin">
+      <summary>The plugin's AssemblyFogCreekMinorVersionMinAttribute value</summary>
+    </member>
+    <member name="M:FogCreek.Plugins.PluginAttributes.IsPluginAssembly(System.Reflection.Assembly)">
+      <summary>
+            Returns true if the assembly is a FogCreek Plugin assembly (that is, it has an AssemblyFogCreekPluginIdAttribute)
+            </summary>
+      <param name="assembly">The assembly to check.</param>
+      <returns>True if the assembly is a FogCreek Plugin assembly</returns>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.sAuthor">
+      <summary>The plugin's AssemblyCompanyAttribute value</summary>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.sDescription">
+      <summary>The plugin's AssemblyDescriptionAttribute value</summary>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.sEmail">
+      <summary>The plugin's AssemblyFogCreekEmailAddressAttribute</summary>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.sId">
+      <summary>The plugin's AssemblyFogCreekPluginIdAttribute value</summary>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.sName">
+      <summary>The plugin's AssemblyTitleAttribute value</summary>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.sVersion">
+      <summary>The plugin's AssemblyFileVersionAttribute value</summary>
+    </member>
+    <member name="P:FogCreek.Plugins.PluginAttributes.sWebsite">
+      <summary>The plugin's AssemblyFogCreekWebsiteAttribute</summary>
+    </member>
+  </members>
+</doc>

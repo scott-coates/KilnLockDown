@@ -33,11 +33,11 @@
   <ItemGroup>
     <Reference Include="FogBugz, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a9eb54ba6d925add, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\FogBugz\Server\website\bin\FogBugz.dll</HintPath>
+      <HintPath>.\FogBugz.dll</HintPath>
     </Reference>
     <Reference Include="FogCreek.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d8367ba9769b01ac, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\FogBugz\Server\website\bin\FogCreek.Plugins.dll</HintPath>
+      <HintPath>.\FogCreek.Plugins.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
