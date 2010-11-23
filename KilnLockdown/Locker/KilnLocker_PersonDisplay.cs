@@ -24,7 +24,7 @@ namespace KilnLockdown.Locker
 
             if (IsEligible(person))
             {
-                var personHasKilnAccess = PersonHasKilnAccess(person);
+                var personHasKilnAccess = PersonHasKilnAccess(person).GetValueOrDefault();
 
                 allowKiln.sContent =
                     Forms.RadioInput("sAllowKiln", "Yes", personHasKilnAccess, "Yes", "sAllowKilnYes")
@@ -50,7 +50,7 @@ namespace KilnLockdown.Locker
 
         private bool IsEligible(CPerson person)
         {
-            return api.SiteConfiguration.IsKilnEnabled && !person.IsSiteAdmin();
+            return api.SiteConfiguration.IsKilnEnabled && !person.fAdministrator;
         }
 
         public string[] PersonDisplayListFields(CPerson person)

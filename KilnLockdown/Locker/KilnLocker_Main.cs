@@ -15,6 +15,9 @@ namespace KilnLockdown.Locker
     public partial class KilnLocker : Plugin
     {
         private const string _kilnAccessTable = "KilnLock";
+        private string _ixCanAccessKiln = "ixCanAccessKiln";
+        private string _ixPersonKilnAccess = "ixPersonKilnAccess";
+
         public const string PluginId = "scoarescoare_KLD";
 
         public KilnLocker(CPluginApi api) : base(api) { }
@@ -23,24 +26,55 @@ namespace KilnLockdown.Locker
         {
             string retVal = "N/A";
 
-            if (!person.fCommunity && !person.fVirtual)
+            bool? hasAccess = PersonHasKilnAccess(person);
+
+            if (hasAccess.HasValue)
             {
-                bool hasAccess = PersonHasKilnAccess(person);
-                retVal = hasAccess ? "Yes" : "No";
+                retVal = hasAccess.Value ? "Yes" : "No";
             }
 
             return retVal;
         }
 
-        private bool PersonHasKilnAccess(CPerson person)
+        private bool IsLicensedUser(CPerson person)
         {
-            bool retVal = false;
-            
-            int canAccess = Convert.ToInt32(person.GetPluginField(PluginId, "ixCanAccessKiln"));
+            return !person.fCommunity && !person.fVirtual;
+        }
 
-            if (canAccess == 1)
+        private bool? PersonHasKilnAccess(CPerson person)
+        {
+            bool? retVal = null;
+
+            if (IsLicensedUser(person))
+            {
+                var canAccess = person.GetPluginField(PluginId, "") as int?;
+
+                if (canAccess == null)
+                {
+                    //set if first time
+                    retVal = SetDefaultKilnAccess(person);
+                }
+                else if (canAccess == 1)
+                {
+                    retVal = true;
+                }
+            }
+            return retVal;
+        }
+
+        private bool SetDefaultKilnAccess(CPerson person)
+        {
+            bool retVal;
+
+            if (person.fAdministrator)
             {
                 retVal = true;
+                person.SetPluginField(PluginId, _ixCanAccessKiln, 1);
+            }
+            else
+            {
+                retVal = false;
+                person.SetPluginField(PluginId, _ixCanAccessKiln, 0);
             }
 
             return retVal;
