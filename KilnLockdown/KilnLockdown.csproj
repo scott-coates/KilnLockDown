@@ -54,7 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPluginPersonJoin_Display_Commit_Example_1.cs" />
+    <Compile Include="Examples\IPluginPersonJoin_Display_Commit_Example_1.cs" />
+    <Compile Include="Examples\IPluginPersonJoin_Display_Commit_Example_2.cs" />
+    <Compile Include="Examples\IPluginSettingsMenu_Example.cs" />
+    <Compile Include="Examples\IPluginStaticJS_Example.cs" />
+    <Compile Include="Locker\KilnLocker_StaticJS.cs" />
     <Compile Include="Locker\KilnLocker_PersonCommit.cs" />
     <Compile Include="Locker\KilnLocker_PersonJoin.cs" />
     <Compile Include="Locker\KilnLocker_Database.cs" />
@@ -64,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="kiln ideas.txt" />
+    <Content Include="static\js\BlockKiln.js" />
+    <Content Include="static\js\custom_message.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -74,6 +80,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files\FogBugzServer\Plugins\examples\_postbuildSln.bat" $(TargetName)</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /I /S "$(ProjectDir)static" "$(TargetDir)static"
+"C:\Program Files\FogBugzServer\Plugins\examples\_postbuildSln.bat" $(TargetName)</PostBuildEvent>
   </PropertyGroup>
 </Project>
