@@ -77,6 +77,8 @@ namespace KilnLockdown.Locker
                 person.SetPluginField(PluginId, _ixCanAccessKiln, 0);
             }
 
+            person.Commit();
+
             return retVal;
         }
     }

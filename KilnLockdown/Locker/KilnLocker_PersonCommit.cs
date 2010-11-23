@@ -16,15 +16,11 @@ namespace KilnLockdown.Locker
     {
         public void PersonCommitAfter(CPerson person)
         {
-            api.Notifications.AddMessage(person.ixPerson.ToString());
-            api.Notifications.AddMessage("Person commit after");
             /*Yay - it worked*/
         }
 
         public bool PersonCommitBefore(CPerson person)
         {
-            api.Notifications.AddMessage(person.ixPerson.ToString());
-            api.Notifications.AddMessage("person commit before");
             return true;
         }
 
