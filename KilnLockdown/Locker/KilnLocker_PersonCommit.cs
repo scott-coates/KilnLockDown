@@ -21,18 +21,19 @@ namespace KilnLockdown.Locker
 
         public bool PersonCommitBefore(CPerson person)
         {
-            string sAllowKiln = api.Request[_radioInputName];
-            
-            if (!string.IsNullOrEmpty(sAllowKiln)) //if we're not updating an existing person
-            {
-                int canAccess = Convert.ToInt32(sAllowKiln);
-                person.SetPluginField(PluginId, _ixCanAccessKiln, canAccess);
-            }
-            else if(person.ixPerson < 1) //if we're adding a new user
+            if (person.ixPerson < 1) //if we're adding a new user
             {
                 SetDefaultKilnAccess(person);
             }
-            
+            else
+            {
+                string sAllowKiln = api.Request[_radioInputName];
+
+                int canAccess = Convert.ToInt32(sAllowKiln);
+
+                person.SetPluginField(PluginId, _ixCanAccessKiln, canAccess);
+            }
+
             return true;
         }
 
