@@ -18,6 +18,7 @@ namespace KilnLockdown.Locker
         private string _ixCanAccessKiln = "ixCanAccessKiln";
         private string _ixPersonKilnAccess = "ixPersonKilnAccess";
         private string _radioInputName = null;
+        private string _kilnUrl = "kilnURL";
 
         public const string PluginId = "scoarescoare_KLD";
 
@@ -85,6 +86,29 @@ namespace KilnLockdown.Locker
         private bool IsEligible(CPerson person)
         {
             return api.SiteConfiguration.IsKilnEnabled && !person.fAdministrator;
+        }
+
+        private string GetKilnInstallationURL()
+        {
+            CPluginKeyValueTable kvt = api.Database.GetKeyValueTable();
+
+            string url = kvt.GetValue(_kilnUrl);
+
+            if (string.IsNullOrEmpty(url))
+            {
+                url = api.Url.BaseUrl() + "kiln";
+                kvt.SetValue(_kilnUrl, url);
+                kvt.Commit();
+            }
+
+            return url;
+        }
+
+        private void SetKilnInstallationURL(string url)
+        {
+            CPluginKeyValueTable kvt = api.Database.GetKeyValueTable();
+            kvt.SetValue(_kilnUrl, url);
+            kvt.Commit();
         }
     }
 }

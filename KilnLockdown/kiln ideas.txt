@@ -12,3 +12,7 @@ prevent users from being given permissions if they're disallowed
 disable every new user to not see kiln
 
 don't show on virtual user or community user.
+
+don't let user store empty string.
+
+redirect to page which will say error if they can't use it
