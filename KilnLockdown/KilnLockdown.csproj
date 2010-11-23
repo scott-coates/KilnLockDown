@@ -54,10 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Examples\IPluginConfigPageDisplay_Example.cs" />
     <Compile Include="Examples\IPluginPersonJoin_Display_Commit_Example_1.cs" />
     <Compile Include="Examples\IPluginPersonJoin_Display_Commit_Example_2.cs" />
     <Compile Include="Examples\IPluginSettingsMenu_Example.cs" />
     <Compile Include="Examples\IPluginStaticJS_Example.cs" />
+    <Compile Include="Locker\KilnLocker_ConfigPageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_StaticJS.cs" />
     <Compile Include="Locker\KilnLocker_PersonCommit.cs" />
     <Compile Include="Locker\KilnLocker_PersonJoin.cs" />
