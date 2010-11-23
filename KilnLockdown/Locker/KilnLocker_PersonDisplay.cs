@@ -17,32 +17,39 @@ namespace KilnLockdown.Locker
     {
         public CDialogItem[] PersonDisplayEdit(CPerson person)
         {
-            var allowKiln = new CDialogItem();
-            var retVal = new CDialogItem[] { allowKiln };
-            allowKiln.sLabel = "Kiln Access";
-            allowKiln.sInstructions = "Is this user allowed to use kiln?";
+            CDialogItem[] retVal = null;
 
-            if (IsEligible(person))
+            if (person.ixPerson > 0)
             {
-                var personHasKilnAccess = PersonHasKilnAccess(person).GetValueOrDefault();
+                var allowKiln = new CDialogItem();
 
-                allowKiln.sContent =
-                    Forms.RadioInput("sAllowKiln", "Yes", personHasKilnAccess, "Yes", "sAllowKilnYes")
-                     +
-                     Forms.RadioInput("sAllowKiln", "No", !personHasKilnAccess, "No", "sAllowKilnNo")
-                     ;
-            }
-            else
-            {
-                //set default setting to yes if admin and no if normal user
-                var setDefault = person.IsSiteAdmin();
-                var enabledAttrs = new Dictionary<string, string> { { "disabled", "true" } };
+                retVal = new CDialogItem[] { allowKiln };
 
-                allowKiln.sContent =
-                    Forms.RadioInput("sAllowKiln", "Yes", setDefault, "Yes", "sAllowKilnYes", enabledAttrs)
-                     +
-                     Forms.RadioInput("sAllowKiln", "No", !setDefault, "No", "sAllowKilnNo", enabledAttrs)
-                     ;
+                allowKiln.sLabel = "Kiln Access";
+                allowKiln.sInstructions = "Is this user allowed to use kiln?";
+
+                if (IsEligible(person))
+                {
+                    var personHasKilnAccess = PersonHasKilnAccess(person).GetValueOrDefault();
+
+                    allowKiln.sContent =
+                        Forms.RadioInput("sAllowKiln", "Yes", personHasKilnAccess, "Yes", "sAllowKilnYes")
+                         +
+                         Forms.RadioInput("sAllowKiln", "No", !personHasKilnAccess, "No", "sAllowKilnNo")
+                         ;
+                }
+                else
+                {
+                    //set default setting to yes if admin and no if normal user
+                    var setDefault = person.IsSiteAdmin();
+                    var enabledAttrs = new Dictionary<string, string> { { "disabled", "true" } };
+
+                    allowKiln.sContent =
+                        Forms.RadioInput("sAllowKiln", "Yes", setDefault, "Yes", "sAllowKilnYes", enabledAttrs)
+                         +
+                         Forms.RadioInput("sAllowKiln", "No", !setDefault, "No", "sAllowKilnNo", enabledAttrs)
+                         ;
+                }
             }
 
             return retVal;
