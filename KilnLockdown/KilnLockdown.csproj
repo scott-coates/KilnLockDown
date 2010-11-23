@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="kiln ideas.txt" />
     <Content Include="static\js\BlockKiln.js" />
+    <Content Include="static\js\HideKiln.js" />
     <Content Include="static\js\custom_message.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

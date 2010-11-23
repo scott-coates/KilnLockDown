@@ -23,8 +23,28 @@ namespace KilnLockdown.Locker
             {
                 if (!PersonHasKilnAccess(person).GetValueOrDefault())
                 {
-                    retVal = new string[] { "js/BlockKiln.js" };
+                    if (InKiln())
+                    {
+                        //if the user is trying to get to kiln, redirect them to homepage
+                        retVal = new string[] { "js/BlockKiln.js" };
+                    }
+                    else
+                    {
+                        //if the user is just on fogbugz, hide the kiln tab
+                    }
                 }
+            }
+
+            return retVal;
+        }
+
+        private bool InKiln()
+        {
+            var retVal = false;
+
+            if (api.Url.BaseUrl().ToLower().Contains("kiln"))
+            {
+                retVal = true;
             }
 
             return retVal;
