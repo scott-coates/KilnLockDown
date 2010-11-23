@@ -58,6 +58,7 @@
     <Compile Include="Examples\IPluginConfigPageDisplay_Example.cs" />
     <Compile Include="Examples\IPluginPersonJoin_Display_Commit_Example_1.cs" />
     <Compile Include="Examples\IPluginPersonJoin_Display_Commit_Example_2.cs" />
+    <Compile Include="Examples\IPluginRawPageDisplay_AJAX_Example %281%29.cs" />
     <Compile Include="Examples\IPluginSettingsMenu_Example.cs" />
     <Compile Include="Examples\IPluginStaticJS_Example.cs" />
     <Compile Include="Locker\KilnLocker_ConfigPageDisplay.cs" />
