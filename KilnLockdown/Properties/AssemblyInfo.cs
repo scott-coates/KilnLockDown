@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using FogCreek.Plugins;
+using KilnLockdown.Locker;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -37,7 +38,7 @@ using FogCreek.Plugins;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 /*FogCreek Plugin Info*/
-[assembly: AssemblyFogCreekPluginIdAttribute("scoarescoare_KLD")]
+[assembly: AssemblyFogCreekPluginIdAttribute(KilnLocker.PluginId)]
 [assembly: AssemblyFogCreekMajorVersionAttribute(3)]
 [assembly: AssemblyFogCreekMinorVersionMinAttribute(5)]
 [assembly: AssemblyFogCreekEmailAddressAttribute("scoarescoare@scoarescoare.com")]

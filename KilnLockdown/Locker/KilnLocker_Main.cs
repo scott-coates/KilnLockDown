@@ -15,8 +15,7 @@ namespace KilnLockdown.Locker
     public partial class KilnLocker : Plugin
     {
         private const string _kilnAccessTable = "KilnLock";
-        protected const string _pluginId =
-            "IKilnAccess@scoarescoare.com";
+        public const string PluginId = "scoarescoare_KLD";
 
         public KilnLocker(CPluginApi api) : base(api) { }
 
@@ -24,7 +23,7 @@ namespace KilnLockdown.Locker
         {
             bool retVal = false;
 
-            int canAccess = Convert.ToInt32(person.GetPluginField(_pluginId, "ixCanAccessKiln"));
+            int canAccess = Convert.ToInt32(person.GetPluginField(PluginId, "ixCanAccessKiln"));
 
             if (canAccess == 1)
             {
