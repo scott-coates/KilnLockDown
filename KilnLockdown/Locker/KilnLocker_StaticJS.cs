@@ -16,35 +16,16 @@ namespace KilnLockdown.Locker
     {
         public string[] StaticJSFiles()
         {
-            string[] retVal = new string[]{};
+            string[] retVal = new string[] { };
 
             var person = api.Person.GetCurrentPerson();
+
             if (IsEligible(person))
             {
                 if (!PersonHasKilnAccess(person).GetValueOrDefault())
                 {
-                    if (InKiln())
-                    {
-                        //if the user is trying to get to kiln, redirect them to homepage
-                        retVal = new string[] { "js/BlockKiln.js" };
-                    }
-                    else
-                    {
-                        //if the user is just on fogbugz, hide the kiln tab
-                    }
+                    retVal = new string[] { "js/BlockKiln.js", "js/HideKiln.js" };
                 }
-            }
-
-            return retVal;
-        }
-
-        private bool InKiln()
-        {
-            var retVal = false;
-
-            if (api.Url.BaseUrl().ToLower().Contains("kiln"))
-            {
-                retVal = true;
             }
 
             return retVal;

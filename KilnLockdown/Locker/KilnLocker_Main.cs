@@ -26,6 +26,7 @@ namespace KilnLockdown.Locker
             : base(api)
         {
             _radioInputName = api.PluginPrefix + "sAllowKiln";
+            api.Notifications.AddMessage(api.Url.BaseUrl());
         }
 
         private string PersonKilnAccessString(CPerson person)
