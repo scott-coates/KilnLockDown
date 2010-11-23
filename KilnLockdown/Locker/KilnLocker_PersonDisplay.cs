@@ -48,11 +48,6 @@ namespace KilnLockdown.Locker
             return retVal;
         }
 
-        private bool IsEligible(CPerson person)
-        {
-            return api.SiteConfiguration.IsKilnEnabled && !person.fAdministrator;
-        }
-
         public string[] PersonDisplayListFields(CPerson person)
         {
             return new string[] { PersonKilnAccessString(person) };
