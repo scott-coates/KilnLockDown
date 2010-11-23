@@ -17,7 +17,7 @@ using FogCreek.FogBugz.UI;
 namespace IPluginConfigPageDisplay_Example
 {
     /* Class Declaration: Inherit from Plugin, implement IPluginConfigPageDisplay */
-    public abstract class IPluginConfigPageDisplay_Example : Plugin, IPluginConfigPageDisplay
+    public  class IPluginConfigPageDisplay_Example : Plugin, IPluginConfigPageDisplay
     {
         /* Constructor: We'll just initialize the inherited Plugin class, which 
          * takes the passed instance of CPluginApi and sets its "api" member variable. */

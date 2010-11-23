@@ -12,7 +12,7 @@ using FogCreek.FogBugz.Plugins.Entity;
 
 namespace KilnLockdown.Locker
 {
-    public partial class KilnLocker : IPluginStaticJS
+    public abstract partial class KilnLocker : IPluginStaticJS
     {
         public string[] StaticJSFiles()
         {
