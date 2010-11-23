@@ -19,6 +19,7 @@ namespace KilnLockdown.Locker
         {
             CDialogItem[] retVal = null;
 
+            //only if editing existing user
             if (person.ixPerson > 0)
             {
                 var allowKiln = new CDialogItem();
@@ -33,9 +34,9 @@ namespace KilnLockdown.Locker
                     var personHasKilnAccess = PersonHasKilnAccess(person).GetValueOrDefault();
 
                     allowKiln.sContent =
-                        Forms.RadioInput("sAllowKiln", "Yes", personHasKilnAccess, "Yes", "sAllowKilnYes")
+                        Forms.RadioInput(_radioInputName, "1", personHasKilnAccess, "Yes", "sAllowKilnYes")
                          +
-                         Forms.RadioInput("sAllowKiln", "No", !personHasKilnAccess, "No", "sAllowKilnNo")
+                         Forms.RadioInput(_radioInputName, "0", !personHasKilnAccess, "No", "sAllowKilnNo")
                          ;
                 }
                 else
@@ -45,9 +46,9 @@ namespace KilnLockdown.Locker
                     var enabledAttrs = new Dictionary<string, string> { { "disabled", "true" } };
 
                     allowKiln.sContent =
-                        Forms.RadioInput("sAllowKiln", "Yes", setDefault, "Yes", "sAllowKilnYes", enabledAttrs)
+                        Forms.RadioInput(_radioInputName, "1", setDefault, "Yes", "sAllowKilnYes", enabledAttrs)
                          +
-                         Forms.RadioInput("sAllowKiln", "No", !setDefault, "No", "sAllowKilnNo", enabledAttrs)
+                         Forms.RadioInput(_radioInputName, "0", !setDefault, "No", "sAllowKilnNo", enabledAttrs)
                          ;
                 }
             }

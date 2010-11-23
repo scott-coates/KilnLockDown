@@ -21,6 +21,14 @@ namespace KilnLockdown.Locker
 
         public bool PersonCommitBefore(CPerson person)
         {
+            string sAllowKiln = api.Request[_radioInputName];
+
+            if (!string.IsNullOrEmpty(sAllowKiln))
+            {
+                int canAccess = Convert.ToInt32(sAllowKiln);
+                person.SetPluginField(PluginId, _ixCanAccessKiln, canAccess);
+            }
+            
             return true;
         }
 

@@ -17,10 +17,15 @@ namespace KilnLockdown.Locker
         private const string _kilnAccessTable = "KilnLock";
         private string _ixCanAccessKiln = "ixCanAccessKiln";
         private string _ixPersonKilnAccess = "ixPersonKilnAccess";
+        private string _radioInputName = null;
 
         public const string PluginId = "scoarescoare_KLD";
 
-        public KilnLocker(CPluginApi api) : base(api) { }
+        public KilnLocker(CPluginApi api)
+            : base(api)
+        {
+            _radioInputName = api.PluginPrefix + "sAllowKiln";
+        }
 
         private string PersonKilnAccessString(CPerson person)
         {
@@ -47,18 +52,26 @@ namespace KilnLockdown.Locker
 
             if (IsLicensedUser(person))
             {
-                var canAccess = person.GetPluginField(PluginId, "") as int?;
+                var canAccess = person.GetPluginField(PluginId, _ixCanAccessKiln) as int?;
 
                 if (canAccess == null)
                 {
                     //set if first time
                     retVal = SetDefaultKilnAccess(person);
                 }
-                else if (canAccess == 1)
+                else
                 {
-                    retVal = true;
+                    if (canAccess == 1)
+                    {
+                        retVal = true;
+                    }
+                    else
+                    {
+                        retVal = false;
+                    }
                 }
             }
+
             return retVal;
         }
 
@@ -84,7 +97,7 @@ namespace KilnLockdown.Locker
 
         private bool IsEligible(CPerson person)
         {
-            return api.SiteConfiguration.IsKilnEnabled && !person.fAdministrator;
+            return !person.fAdministrator;
         }
     }
 }
