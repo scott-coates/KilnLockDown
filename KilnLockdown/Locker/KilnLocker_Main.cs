@@ -19,10 +19,23 @@ namespace KilnLockdown.Locker
 
         public KilnLocker(CPluginApi api) : base(api) { }
 
+        private string PersonKilnAccessString(CPerson person)
+        {
+            string retVal = "N/A";
+
+            if (!person.fCommunity && !person.fVirtual)
+            {
+                bool hasAccess = PersonHasKilnAccess(person);
+                retVal = hasAccess ? "Yes" : "No";
+            }
+
+            return retVal;
+        }
+
         private bool PersonHasKilnAccess(CPerson person)
         {
             bool retVal = false;
-
+            
             int canAccess = Convert.ToInt32(person.GetPluginField(PluginId, "ixCanAccessKiln"));
 
             if (canAccess == 1)

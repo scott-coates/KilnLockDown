@@ -10,3 +10,5 @@ allow user to get to a case if they're already assigned but disallowed
 prevent users from being given permissions if they're disallowed
 
 disable every new user to not see kiln
+
+don't show on virtual user or community user.

@@ -55,7 +55,7 @@ namespace KilnLockdown.Locker
 
         public string[] PersonDisplayListFields(CPerson person)
         {
-            return new string[] { PersonHasKilnAccess(person) ? "Yes" : "No" };
+            return new string[] { PersonKilnAccessString(person) };
         }
 
         public string[] PersonDisplayListHeaders()
