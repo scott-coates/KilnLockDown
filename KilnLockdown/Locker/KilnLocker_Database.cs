@@ -33,6 +33,42 @@ namespace KilnLockdown.Locker
 
         public void DatabaseUpgradeBefore(int ixVersionFrom, int ixVersionTo, CDatabaseUpgradeApi apiUpgrade) { }
 
-        public void DatabaseUpgradeAfter(int ixVersionFrom, int ixVersionTo, CDatabaseUpgradeApi apiUpgrade) { }
+        public void DatabaseUpgradeAfter(int ixVersionFrom, int ixVersionTo, CDatabaseUpgradeApi apiUpgrade)
+        {
+            //For the first revision, provide locking info for all users.
+
+            //if admin, set allowAccess = true
+            SetDefaultAdmins();
+
+            //if normal, set allow = false
+            SetDefaultNormalUsers();
+        }
+
+        private void SetDefaultNormalUsers()
+        {
+            CInsertSelectQuery insert = api.Database.NewInsertSelectQuery(api.Database.PluginTableName(_kilnAccessTable));
+            insert.SelectQuery = api.Database.NewSelectQuery("Person");
+            insert.SelectQuery.AddSelect("Person.ixPerson");
+            insert.SelectQuery.AddWhere("Person.fAdministrator = 0");
+            insert.SelectQuery.AddWhere("Person.fCommunity = 0");
+            insert.SelectQuery.AddWhere("Person.fVirtual = 0");
+            insert.SelectQuery.AddWhere("Person.fConfirmed = 1");
+            insert.AddInsertIntoColumn("ixPerson");
+            insert.Execute();
+        }
+
+        private void SetDefaultAdmins()
+        {
+            CInsertSelectQuery insert = api.Database.NewInsertSelectQuery(api.Database.PluginTableName(_kilnAccessTable));
+            insert.SelectQuery = api.Database.NewSelectQuery("Person");
+            insert.SelectQuery.AddSelect("Person.ixPerson");
+            insert.SelectQuery.AddWhere("Person.fAdministrator = 1");
+            insert.AddInsertIntoColumn("ixPerson");
+            insert.Execute();
+            //Sets all existing admins to true
+            CUpdateQuery update = api.Database.NewUpdateQuery(api.Database.PluginTableName(_kilnAccessTable));
+            update.UpdateInt("ixCanAccessKiln", 1);
+            update.Execute();
+        }
     }
 }

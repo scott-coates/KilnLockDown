@@ -52,47 +52,34 @@ namespace KilnLockdown.Locker
 
             if (IsLicensedUser(person))
             {
-                var canAccess = person.GetPluginField(PluginId, _ixCanAccessKiln) as int?;
+                int canAccess = Convert.ToInt32(person.GetPluginField(PluginId, _ixCanAccessKiln));
 
-                if (canAccess == null)
+                if (canAccess == 1)
                 {
-                    //set if first time
-                    retVal = SetDefaultKilnAccess(person);
+                    retVal = true;
                 }
                 else
                 {
-                    if (canAccess == 1)
-                    {
-                        retVal = true;
-                    }
-                    else
-                    {
-                        retVal = false;
-                    }
+                    retVal = false;
                 }
             }
 
             return retVal;
         }
 
-        private bool SetDefaultKilnAccess(CPerson person)
+        private void SetDefaultKilnAccess(CPerson person)
         {
-            bool retVal;
-
-            if (person.fAdministrator)
+            if (IsLicensedUser(person))
             {
-                retVal = true;
-                person.SetPluginField(PluginId, _ixCanAccessKiln, 1);
+                if (person.fAdministrator)
+                {
+                    person.SetPluginField(PluginId, _ixCanAccessKiln, 1);
+                }
+                else
+                {
+                    person.SetPluginField(PluginId, _ixCanAccessKiln, 0);
+                }
             }
-            else
-            {
-                retVal = false;
-                person.SetPluginField(PluginId, _ixCanAccessKiln, 0);
-            }
-
-            person.Commit();
-
-            return retVal;
         }
 
         private bool IsEligible(CPerson person)
