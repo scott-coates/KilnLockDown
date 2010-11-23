@@ -84,7 +84,7 @@ namespace KilnLockdown.Locker
 
         private bool IsEligible(CPerson person)
         {
-            return !person.fAdministrator;
+            return api.SiteConfiguration.IsKilnEnabled && !person.fAdministrator;
         }
     }
 }
