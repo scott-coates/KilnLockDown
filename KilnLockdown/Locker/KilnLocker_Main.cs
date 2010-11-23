@@ -110,5 +110,11 @@ namespace KilnLockdown.Locker
             kvt.SetValue(_kilnUrl, url);
             kvt.Commit();
         }
+
+        private void SetKilnInstallationURLAndDisplay(string url)
+        {
+            SetKilnInstallationURL(url);
+            api.Notifications.AddMessage("Kiln installation url changed to " + url);
+        }
     }
 }

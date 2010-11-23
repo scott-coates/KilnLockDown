@@ -71,7 +71,7 @@ namespace KilnLockdown.Locker
                     }
                     else
                     {
-                        SetKilnInstallationURL(kilnURL);
+                        SetKilnInstallationURLAndDisplay(kilnURL);
                     }
                 }
                 else
