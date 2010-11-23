@@ -14,10 +14,24 @@ namespace KilnLockdown.Locker
 {
     public partial class KilnLocker : Plugin
     {
-        private string _kilnAccessTable = "KilnLock";
+        private const string _kilnAccessTable = "KilnLock";
         protected const string _pluginId =
             "IKilnAccess@scoarescoare.com";
 
         public KilnLocker(CPluginApi api) : base(api) { }
+
+        private bool PersonHasKilnAccess(CPerson person)
+        {
+            bool retVal = false;
+
+            int canAccess = Convert.ToInt32(person.GetPluginField(_pluginId, "ixCanAccessKiln"));
+
+            if (canAccess == 1)
+            {
+                retVal = true;
+            }
+
+            return retVal;
+        }
     }
 }

@@ -24,10 +24,12 @@ namespace KilnLockdown.Locker
 
             if (IsEligible(person))
             {
+                var personHasKilnAccess = PersonHasKilnAccess(person);
+
                 allowKiln.sContent =
-                    Forms.RadioInput("sAllowKiln", "Yes", false, "Yes", "sAllowKilnYes")
+                    Forms.RadioInput("sAllowKiln", "Yes", personHasKilnAccess, "Yes", "sAllowKilnYes")
                      +
-                     Forms.RadioInput("sAllowKiln", "No", false, "Now", "sAllowKilnNo")
+                     Forms.RadioInput("sAllowKiln", "No", !personHasKilnAccess, "Now", "sAllowKilnNo")
                      ;
             }
             else
@@ -53,7 +55,7 @@ namespace KilnLockdown.Locker
 
         public string[] PersonDisplayListFields(CPerson person)
         {
-            return new string[] { "Yes" };
+            return new string[] { PersonHasKilnAccess(person) ? "Yes" : "No" };
         }
 
         public string[] PersonDisplayListHeaders()
