@@ -29,7 +29,7 @@ namespace KilnLockdown.Locker
                 allowKiln.sContent =
                     Forms.RadioInput("sAllowKiln", "Yes", personHasKilnAccess, "Yes", "sAllowKilnYes")
                      +
-                     Forms.RadioInput("sAllowKiln", "No", !personHasKilnAccess, "Now", "sAllowKilnNo")
+                     Forms.RadioInput("sAllowKiln", "No", !personHasKilnAccess, "No", "sAllowKilnNo")
                      ;
             }
             else
