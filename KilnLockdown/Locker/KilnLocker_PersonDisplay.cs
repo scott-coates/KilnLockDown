@@ -20,7 +20,7 @@ namespace KilnLockdown.Locker
             CDialogItem[] retVal = null;
 
             //only if editing existing user
-            if (person.ixPerson > 0)
+            if (person.ixPerson > 0 && api.Person.GetCurrentPerson().fAdministrator)
             {
                 var allowKiln = new CDialogItem();
 
