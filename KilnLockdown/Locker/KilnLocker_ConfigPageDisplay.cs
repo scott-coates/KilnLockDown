@@ -38,18 +38,18 @@ namespace KilnLockdown.Locker
              * In this case, the "kiln url" value is posted and retrieved. */
 
             string kilnURL = GetUrlForForm();
-
+            var attrs = new Dictionary<string, string> { { "style", "width:450px;" } };
             return String.Format(
                 @"<form action=""{0}"" method=""POST"">
                         <input type=""hidden"" name=""{1}actionToken"" value=""{2}"">
-                        <p>{3} {4} {5}</p>
+                        <table><tr><td>{3}</td><td>{4}</td><td>{5}</td></tr></table>
                 </form>",
 
                 HttpUtility.HtmlAttributeEncode(api.Url.PluginConfigPageUrl()),
                 api.PluginPrefix,
                 api.Security.GetActionToken(),
                 Forms.Label(api.PluginPrefix + "info", "Kiln Installation URL:"),
-                Forms.TextInput(api.PluginPrefix + "kilnURL", kilnURL),
+                Forms.TextareaInput(api.PluginPrefix + "kilnURL", kilnURL, 1, attrs),
                 Forms.SubmitButton("submit", "Submit")
                 );
         }
