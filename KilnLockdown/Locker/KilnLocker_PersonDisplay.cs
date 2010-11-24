@@ -51,7 +51,10 @@ namespace KilnLockdown.Locker
                          Forms.RadioInput(_radioInputName, "0", !setDefault, "No", "sAllowKilnNo", enabledAttrs)
                          ;
 
-                    allowKiln.sInstructions += " (This option is not configurable until Kiln is installed)";
+                    if (!api.SiteConfiguration.IsKilnEnabled)
+                    {
+                        allowKiln.sInstructions += " (This option is not configurable until Kiln is installed)";
+                    }
                 }
             }
 
