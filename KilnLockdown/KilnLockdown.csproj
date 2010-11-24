@@ -54,13 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\BugMonkey.cs" />
-    <Compile Include="Examples\IPluginConfigPageDisplay_Example.cs" />
-    <Compile Include="Examples\IPluginPersonJoin_Display_Commit_Example_1.cs" />
-    <Compile Include="Examples\IPluginPersonJoin_Display_Commit_Example_2.cs" />
-    <Compile Include="Examples\IPluginRawPageDisplay_AJAX_Example %281%29.cs" />
-    <Compile Include="Examples\IPluginSettingsMenu_Example.cs" />
-    <Compile Include="Examples\IPluginStaticJS_Example.cs" />
     <Compile Include="Locker\KilnLocker_PageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_RawPageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_ConfigPageDisplay.cs" />
@@ -75,9 +68,7 @@
   <ItemGroup>
     <Content Include="kiln ideas.txt" />
     <Content Include="static\js\BlockKiln.js" />
-    <Content Include="static\js\custom.js" />
     <Content Include="static\js\HideKiln.js" />
-    <Content Include="static\js\custom_message.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

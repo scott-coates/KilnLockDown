@@ -41,5 +41,5 @@ using KilnLockdown.Locker;
 [assembly: AssemblyFogCreekPluginIdAttribute(KilnLocker.PluginId)]
 [assembly: AssemblyFogCreekMajorVersionAttribute(3)]
 [assembly: AssemblyFogCreekMinorVersionMinAttribute(5)]
-[assembly: AssemblyFogCreekEmailAddressAttribute("scoarescoare@scoarescoare.com")]
-[assembly: AssemblyFogCreekWebsiteAttribute("http://scoarescoare.com")]
+[assembly: AssemblyFogCreekEmailAddressAttribute("scoarescoare@gmail.com")]
+//[assembly: AssemblyFogCreekWebsiteAttribute("http://scoarescoare.com")]
