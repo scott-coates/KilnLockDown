@@ -89,7 +89,7 @@ namespace KilnLockdown.Locker
 
         protected string GetHeader()
         {
-            string retVal = String.Format("<p>{0}</p>", PageDisplay.Headline("Kiln Lockdown Configuration"));
+            string retVal = String.Format("<p>{0}</p>", FogCreek.FogBugz.UI.PageDisplay.Headline("Kiln Lockdown Configuration"));
 
             retVal += "<p>Provide your kiln installation URL.  This URL will be blocked for users who don't have kiln access. </p>";
 

@@ -61,6 +61,8 @@
     <Compile Include="Examples\IPluginRawPageDisplay_AJAX_Example %281%29.cs" />
     <Compile Include="Examples\IPluginSettingsMenu_Example.cs" />
     <Compile Include="Examples\IPluginStaticJS_Example.cs" />
+    <Compile Include="Locker\KilnLocker_PageDisplay.cs" />
+    <Compile Include="Locker\KilnLocker_RawPageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_ConfigPageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_StaticJS.cs" />
     <Compile Include="Locker\KilnLocker_PersonCommit.cs" />
