@@ -16,17 +16,7 @@ namespace KilnLockdown.Locker
     {
         public string[] StaticJSFiles()
         {
-            string[] retVal = new string[] { };
-
-            var person = api.Person.GetCurrentPerson();
-
-            if (IsEligible(person))
-            {
-                if (!PersonHasKilnAccess(person).GetValueOrDefault())
-                {
-                    retVal = new string[] { "js/BlockKiln.js", "js/HideKiln.js" };
-                }
-            }
+            string[] retVal = new string[] { "js/BlockKiln.js", "js/HideKiln.js" };
 
             return retVal;
         }
