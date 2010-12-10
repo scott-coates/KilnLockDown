@@ -12,13 +12,11 @@ using FogCreek.FogBugz.Plugins.Entity;
 
 namespace KilnLockdown.Locker
 {
-    public partial class KilnLocker : IPluginStaticJS
+    public partial class KilnLocker : IPluginStaticCSS
     {
-        public string[] StaticJSFiles()
+        public string[] StaticCSSFiles()
         {
-            string[] retVal = new string[] { "js/BlockKiln.js", "js/HideKiln.js" };
-
-            return retVal;
+            return new string[] { "css/HideKiln.css" };
         }
     }
 }

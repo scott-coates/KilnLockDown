@@ -54,10 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Locker\KilnLocker_StaticCSS.cs" />
     <Compile Include="Locker\KilnLocker_PageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_RawPageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_ConfigPageDisplay.cs" />
-    <Compile Include="Locker\KilnLocker_StaticJS.cs" />
     <Compile Include="Locker\KilnLocker_PersonCommit.cs" />
     <Compile Include="Locker\KilnLocker_PersonJoin.cs" />
     <Compile Include="Locker\KilnLocker_Database.cs" />
@@ -67,8 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="kiln ideas.txt" />
-    <Content Include="static\js\BlockKiln.js" />
-    <Content Include="static\js\HideKiln.js" />
+    <Content Include="static\css\HideKiln.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

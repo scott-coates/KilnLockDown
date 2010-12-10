@@ -29,9 +29,6 @@ namespace KilnLockdown.Locker
                     {
                         switch (action.ToLower())
                         {
-                            case "block":
-                                retVal = BlockKiln();
-                                break;
                             case "hide":
                                 retVal = HideKiln();
                                 break;
@@ -45,31 +42,17 @@ namespace KilnLockdown.Locker
 
         private string HideKiln()
         {
-            var hideKilnScript = new StringBuilder();
+            var hideKilnCSS = new StringBuilder();
 
-            hideKilnScript.Append("$(document).ready(function() {")
-                .Append("$('.tabKiln').remove();") //kiln tab at the top of the screen
-                .Append("$('#Menu_AppKiln').remove();")
-                .Append("});"); //kiln image in the 'my settings' page
+            hideKilnCSS.Append(".tabKiln { display:none; }")//kiln tab at the top of the screen
+                .Append("#Menu_AppKiln { display:none; } ");//kiln image in the 'my settings' page
 
-            return hideKilnScript.ToString();
-        }
-
-        private string BlockKiln()
-        {
-            var blockKilnScript = new StringBuilder();
-
-            blockKilnScript.Append("if(window.location.toString().toLowerCase().indexOf('" + GetKilnInstallationURL().ToLower() + "') != -1)");
-            blockKilnScript.Append("{\n");
-            blockKilnScript.Append("window.location = '" + api.Url.PluginPageUrl() + "';");
-            blockKilnScript.Append("\n}");
-
-            return blockKilnScript.ToString();
+            return hideKilnCSS.ToString();
         }
 
         public PermissionLevel RawPageVisibility()
         {
-            return PermissionLevel.Normal;
+            return PermissionLevel.Public;
         }
     }
 }
