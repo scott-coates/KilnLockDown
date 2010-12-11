@@ -12,11 +12,14 @@ using FogCreek.FogBugz.Plugins.Entity;
 
 namespace KilnLockdown.Locker
 {
-    public partial class KilnLocker : IPluginRawPageDisplay
+    public partial class KilnLocker : IPluginBinaryPageDisplay
     {
-        public string RawPageDisplay()
+        public byte[] BinaryPageDisplay()
         {
-            string retVal = null;
+            var retVal = string.Empty;
+
+            api.Response.ContentType = "text/css";
+
             var person = api.Person.GetCurrentPerson();
 
             if (IsEligible(person))
@@ -37,7 +40,7 @@ namespace KilnLockdown.Locker
                 }
             }
 
-            return retVal;
+            return new ASCIIEncoding().GetBytes(retVal);
         }
 
         private string HideKiln()
@@ -45,12 +48,13 @@ namespace KilnLockdown.Locker
             var hideKilnCSS = new StringBuilder();
 
             hideKilnCSS.Append(".tabKiln { display:none; }")//kiln tab at the top of the screen
+                .Append(Environment.NewLine)
                 .Append("#Menu_AppKiln { display:none; } ");//kiln image in the 'my settings' page
 
             return hideKilnCSS.ToString();
         }
 
-        public PermissionLevel RawPageVisibility()
+        public PermissionLevel BinaryPageVisibility()
         {
             return PermissionLevel.Public;
         }

@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="Locker\KilnLocker_StaticCSS.cs" />
     <Compile Include="Locker\KilnLocker_PageDisplay.cs" />
-    <Compile Include="Locker\KilnLocker_RawPageDisplay.cs" />
+    <Compile Include="Locker\KilnLocker_BinaryPageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_ConfigPageDisplay.cs" />
     <Compile Include="Locker\KilnLocker_PersonCommit.cs" />
     <Compile Include="Locker\KilnLocker_PersonJoin.cs" />
