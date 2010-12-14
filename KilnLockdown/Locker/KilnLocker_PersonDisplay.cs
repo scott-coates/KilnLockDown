@@ -27,7 +27,7 @@ namespace KilnLockdown.Locker
                 retVal = new CDialogItem[] { allowKiln };
 
                 allowKiln.sLabel = "Kiln Access";
-                allowKiln.sInstructions = "Is this user allowed to use kiln?";
+                allowKiln.sInstructions = "Is this user allowed to use Kiln?";
 
                 if (IsEligible(person))
                 {
